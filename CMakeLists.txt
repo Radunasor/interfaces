@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.21.1)
+
+project(interfaces LANGUAGES C VERSION 0.0.1)
+set(CMAKE_C_STANDARD 11)
+
+include(GNUInstallDirs)
+
+file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+add_library(${PROJECT_NAME} INTERFACE ${SOURCES})
+
+target_include_directories(${PROJECT_NAME}
+    INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
